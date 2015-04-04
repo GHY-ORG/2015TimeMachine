@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/main.min.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta name="description" content="TimeMachine" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("九时一刻", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("照片", "Index")
+                    </li>
+                    <li>
+                        @Html.ActionLink("图片故事", "Index")
+                    </li>
+                    <li>
+                        @Html.ActionLink("美拍", "Index")
+                    </li>
+                </ul>
+                <div class="navbar-right">
+                    <div class="user-state">
+                        欢迎，
+                        @if (ViewBag.User == null)
+                        {
+                            <a class="login-btn">请登陆</a>
+                        }
+                        else
+                        {
+                            @ViewBag.User
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - GHY.CN</p>
+    </footer>
+    @Html.Partial("_PartialLogin")
+    <script src="~/Scripts/main.min.js"></script>
+    <script>
+        var importLayout = new MyModules.Layout();
+    </script>
+
+    @if (ViewBag.User == null)
+    {
+        <script>importLayout.toggleLogin();</script>
+    }
+
+</body>
+
+</html>
