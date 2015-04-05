@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 using BADL;
 using Entity;
 using Common;
-
 using System.Data;
-using Common;
-using Entity;
-using BADL;
 
 namespace _2015TimeMachineCookie.Controllers
 {
