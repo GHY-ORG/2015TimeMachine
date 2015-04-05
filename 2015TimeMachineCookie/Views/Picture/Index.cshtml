@@ -1,0 +1,83 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "照片组展示";
+    ViewBag.Css = new string[]{
+        "/Content/thumbnail-gallery.css",
+        "/Content/lightbox.min.css",
+        "/Content/Picture.css"
+    };
+    ViewBag.Js = new string[]{
+        "/Scripts/lightbox.min.js",
+        "/Scripts/showpic.js"
+    };
+}
+<!--===Head Begin===-->
+<div class="head clearfix">
+    <div class="col-md-3">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                选择排序
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" id="0" tabindex="-1" href="/Picture/Index/1/1?0">时间顺序</a></li>
+                <li role="presentation"><a role="menuitem" id="1" tabindex="-1" href="/Picture/Index/1/1?1">时间倒序</a></li>
+                <li role="presentation"><a role="menuitem" id="2" tabindex="-1" href="/Picture/Index/1/1?2">热度最高</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-6">
+        <form action="">
+            <div class="input-group input-search">
+                <input type="text" id="index-search-input" class="form-control" placeholder="搜索作品/作者名字" aria-describedby="basic-addon2">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="index-search-btn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+<!--===Head End===-->
+<!--===Show Pictures Begin===-->
+<div class="row">
+    @foreach (DataRow dr in Model.Rows)
+    {
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a class="thumbnail" href="../../@dr["imgPath"]" data-lightbox="@dr["imgID"]" title="@dr["description"]">
+                <img class="img-responsive" src="../@dr["imgPath"]" alt="">
+            </a>
+            <h3>@dr["title"]</h3>
+            <a href="" title="给他投票"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @dr["votes"]</a>
+            <a href="" title="浏览次数"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> @dr["views"]</a>
+            <p>@dr["description"]</p>
+            <h6>by @dr["uName"]</h6>
+        </div>
+    }
+</div>
+
+<!--Pagination Begin-->
+<!--
+<nav class="text-center" id="pagenav">
+    <ul class="pagination pagination-lg">
+        <li class="disabled">
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="active" id="firstpage"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        @for (int i = 0; i < Model.Rows.Count / 15 + 1; i++)
+        {
+            <li><a href="#" class="pageli">@(i + 2)</a></li>
+        }
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>-->
+<!--Pagination End-->
+<!--===Show Pictures End===-->

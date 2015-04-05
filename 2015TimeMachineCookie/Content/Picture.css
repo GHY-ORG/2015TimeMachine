@@ -1,0 +1,12 @@
+﻿/* select and search in show picture page */
+.head{
+    margin:20px auto;
+    padding-bottom:20px;
+    border-bottom:2px solid #7A7A7A;
+}
+/* show pictures */
+.thumbnail{max-height:260px;overflow:hidden}
+.thumb a,.thumb h6{text-align:right}
+
+/* bootstrap and lightbox conflict */
+.lightbox .lb-image{max-width: none;}
