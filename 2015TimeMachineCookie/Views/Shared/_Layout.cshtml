@@ -59,23 +59,27 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - GHY.CN</p>
     </footer>
-    @if (ViewBag.User == null)
-    {
-        @Html.Partial("_PartialLogin")
-        @Html.Partial("_PartialRegister");
-    }
+    <div class="box-bg">
+        @if (ViewBag.User == null)
+        {
+            @Html.Partial("_PartialLogin")
+            @Html.Partial("_PartialRegister");
+        }
+    </div>
+    
     <script src="~/Scripts/main.min.js"></script>
     <script>
         var importLayout = new MyModules.Layout();
     </script>
-    @if (ViewBag.User == null)
-    {
-        <script>importLayout.showbg();</script>
-    }
-    
     @foreach (var i in ViewBag.Js ?? new string[] { })
     {
         <script src="@i"></script>
     }
+    @if (ViewBag.User == null)
+    {
+        <script>importLayout.showlogin();</script>
+    }
+    
+    
 </body>
 </html>

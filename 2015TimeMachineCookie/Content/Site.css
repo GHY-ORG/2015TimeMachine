@@ -38,10 +38,12 @@ textarea {
 }
 
 footer{
+    position:absolute;bottom:0;
     width:100%;background:#3c3c3c;
     text-align:center;
 }
 footer p{
+
     height:30px;line-height:30px;
     color:#fff;
     margin:0;
