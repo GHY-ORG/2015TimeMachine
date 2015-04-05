@@ -8,6 +8,11 @@ using BADL;
 using Entity;
 using Common;
 
+using System.Data;
+using Common;
+using Entity;
+using BADL;
+
 namespace _2015TimeMachineCookie.Controllers
 {
     public class PictureController : Controller
@@ -15,7 +20,17 @@ namespace _2015TimeMachineCookie.Controllers
         // GET: Picture
         public ActionResult Index()
         {
-            return View();
+            DataTable dt = BADL_showImg.showImg(1, 1);
+            return View(dt);
+        }
+
+        // Post: BlockNo
+        [HttpPost]
+        [Route("/picture/block/{blockno}")]
+        public ActionResult block(int blockno)
+        {
+            DataTable dt = BADL_showImg.showImg(1, blockno);
+            return View(dt);
         }
 
         [HttpPost]
