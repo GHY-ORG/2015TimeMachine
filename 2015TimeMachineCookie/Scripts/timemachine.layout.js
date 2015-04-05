@@ -1,6 +1,4 @@
-﻿
-
-MyModules.Layout = function () {
+﻿MyModules.Layout = function () {
 
     //成员定义
     $bg = $(".box-bg");

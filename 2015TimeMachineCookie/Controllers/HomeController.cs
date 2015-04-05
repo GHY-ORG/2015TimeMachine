@@ -22,8 +22,5 @@ namespace _2015TimeMachineCookie.Controllers
             }
             return View();
         }
-
-
-
     }
 }
