@@ -1,18 +1,18 @@
 ﻿
-<div class="login-bg">
-    <form class="login-form form-horizontal" role="form">
+<div class="box-bg">
+    <form class="login-form form-horizontal" role="form" onsubmit="return false">
         <div class="form-group">
             <label class="col-md-3 control-label" for="login-name">用户名</label>
-            <input id="login-name" type="text" class="form-control" value="" placeholder="Enter your name" />
+            <input id="login-name" type="text" class="form-control" value="" placeholder="Enter your name" required />
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label" for="login-pass">密码</label>
-            <input id="login-pass" type="password" class="form-control" value="" placeholder="Password" />
+            <input id="login-pass" type="password" class="form-control" value="" placeholder="Password" required />
         </div>
-        <a id="login-btn-ok" class="btn btn-success btn-large btn-block" href="#">Login</a>
-        <a id="login-btn-register" class="btn btn-info btn-large btn-block" href="#">Register</a>
+        <button id="login-btn-ok" class="btn btn-success btn-large btn-block">Login</button>
+        <a id="login-btn-register" class="btn btn-info btn-large btn-block">Register</a>
         <div id="login-close" class="glyphicon glyphicon-remove" aria-hidden="true"></div>
     </form>
-    
+
 </div>
 

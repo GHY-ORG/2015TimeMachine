@@ -1,0 +1,74 @@
+﻿.box-bg{
+    width:100%;height:100%;
+    z-index:1037;top:0;
+    display:none;
+    position:fixed;
+    background-color:rgba(0, 0, 0, 0.70);
+}
+.box-bg.on{
+    display:block;
+}
+.login-form {
+    width: 450px;height: 280px;
+    position:absolute;
+    left: 50%;top: 50%;
+    margin: -150px 0 0 -225px;
+    padding:50px 30px 0 30px;
+    border-radius:5px;
+    background-color:#fff;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+}
+@-moz-keyframes login-in{
+    from {
+        opacity:0;
+        margin-top:-140px;
+    }
+    to{
+        opacity:1;
+        margin-top:-150px;
+    }
+}
+
+@-webkit-keyframes login-in{
+    from {
+        opacity:0;
+        margin-top:-140px;
+    }
+    to{
+        opacity:1;
+        margin-top:-150px;
+    }
+}
+
+@keyframes login-in{
+    from {
+        opacity:0;
+        margin-top:-140px;
+    }
+    to{
+        opacity:1;
+        margin-top:-150px;
+    }
+}
+.box-bg.on .login-form {
+    -moz-animation: login-in 1s ease-in-out;
+    -o-animation: login-in 1s ease-in-out;
+    -webkit-animation: login-in 1s ease-in-out;
+    animation: login-in 1s ease-in-out;
+}
+#login-close{
+    display:block;
+    position:absolute;
+    right:0;top:0;
+    width:50px;height:50px;
+    line-height:50px;text-align:center;
+    font-size:24px;
+    color:#444;
+    cursor:pointer;
+}
+#login-close:hover{
+    color:#000;
+}

@@ -41,6 +41,10 @@ body {
 .user-state .login-btn{
     cursor:pointer;
 }
+.user-state .user-exit:before{
+    content:"安全退出";
+    cursor:pointer;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -53,14 +57,27 @@ select,
 textarea {
     max-width: 280px;
 }
-.login-bg{
+
+footer{
+    width:100%;background:#3c3c3c;
+    text-align:center;
+    position:absolute;
+    bottom:0;
+}
+footer p{
+    height:30px;line-height:30px;
+    color:#fff;
+    margin:0;
+}
+
+.box-bg{
     width:100%;height:100%;
     z-index:1037;top:0;
     display:none;
     position:fixed;
     background-color:rgba(0, 0, 0, 0.70);
 }
-.login-bg.on{
+.box-bg.on{
     display:block;
 }
 .login-form {
@@ -108,7 +125,7 @@ textarea {
         margin-top:-150px;
     }
 }
-.login-bg.on .login-form {
+.box-bg.on .login-form {
     -moz-animation: login-in 1s ease-in-out;
     -o-animation: login-in 1s ease-in-out;
     -webkit-animation: login-in 1s ease-in-out;
@@ -127,15 +144,3 @@ textarea {
 #login-close:hover{
     color:#000;
 }
-footer{
-    width:100%;background:#3c3c3c;
-    text-align:center;
-    position:absolute;
-    bottom:0;
-}
-footer p{
-    height:30px;line-height:30px;
-    color:#fff;
-    margin:0;
-}
-

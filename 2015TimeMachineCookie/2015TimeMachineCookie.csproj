@@ -95,6 +95,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\main.css">
       <DependentUpon>main.css.bundle</DependentUpon>
     </Content>
@@ -147,6 +148,7 @@
     <Content Include="Scripts\main.min.js.map">
       <DependentUpon>main.min.js</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\_PartialRegister.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -160,6 +162,20 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Picture\" />
     <Folder Include="Views\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BADL\BADL.csproj">
+      <Project>{06ff9d81-f0f6-4af3-a73a-5fed98cbaefb}</Project>
+      <Name>BADL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{71b3541e-8e76-4eb6-a77b-bbbbda47f658}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{7a1e3a73-4187-44c4-9b8b-81ed5265d6d5}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

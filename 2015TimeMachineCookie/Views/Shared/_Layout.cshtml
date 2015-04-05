@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="~/Content/main.min.css" rel="stylesheet" />
+
+    @foreach (var i in ViewBag.Css??new string[]{})
+    {
+        <link href="@i" rel="stylesheet" />
+    }
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <meta name="description" content="TimeMachine" />
 </head>
@@ -41,6 +46,7 @@
                         else
                         {
                             @ViewBag.User
+                            <a class="user-exit"></a>
                         }
                     </div>
                 </div>
@@ -54,7 +60,11 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - GHY.CN</p>
     </footer>
-    @Html.Partial("_PartialLogin")
+    @if (ViewBag.User == null)
+    {
+        @Html.Partial("_PartialLogin")
+        @Html.Partial("_PartialRegister");
+    }
     <script src="~/Scripts/main.min.js"></script>
     <script>
         var importLayout = new MyModules.Layout();
@@ -62,9 +72,11 @@
 
     @if (ViewBag.User == null)
     {
-        <script>importLayout.toggleLogin();</script>
+        <script>importLayout.showbg();</script>
     }
 
 </body>
+
+
 
 </html>

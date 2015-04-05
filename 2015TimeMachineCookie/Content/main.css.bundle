@@ -14,5 +14,6 @@
   <files>
     <file>/Content/bootstrap.min.css</file>
     <file>/Content/Site.css</file>
+    <file>/Content/login.css</file>
   </files>
 </bundle>
