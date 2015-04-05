@@ -4,8 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/main.min.css" rel="stylesheet" />
+    @foreach (var i in ViewBag.Css ?? new string[] { })
+    {
+        <link href="@i" rel="stylesheet" />
+    }
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <meta name="description" content="TimeMachine" />
 </head>
 <body>
@@ -65,6 +71,10 @@
         <script>importLayout.toggleLogin();</script>
     }
 
+    @foreach (var i in ViewBag.Js ?? new string[] { })
+    {
+        <script src="@i"></script>
+    }
 </body>
 
 </html>
