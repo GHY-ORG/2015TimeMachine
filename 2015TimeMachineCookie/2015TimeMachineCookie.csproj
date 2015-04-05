@@ -131,6 +131,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegisterForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,9 +160,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Picture\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BADL\BADL.csproj">

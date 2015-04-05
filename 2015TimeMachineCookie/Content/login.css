@@ -1,74 +1,163 @@
-﻿.box-bg{
-    width:100%;height:100%;
-    z-index:1037;top:0;
-    display:none;
-    position:fixed;
-    background-color:rgba(0, 0, 0, 0.70);
+﻿.box-bg {
+    width: 100%;
+    height: 100%;
+    z-index: 1037;
+    top: 0;
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.70);
 }
-.box-bg.on{
-    display:block;
+
+    .box-bg.on {
+        display: block;
+    }
+
+
+
+@-moz-keyframes login-in {
+    from {
+        opacity: 0;
+        margin-top: -140px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: -150px;
+    }
 }
-.login-form {
-    width: 450px;height: 280px;
-    position:absolute;
-    left: 50%;top: 50%;
+
+@-webkit-keyframes login-in {
+    from {
+        opacity: 0;
+        margin-top: -140px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: -150px;
+    }
+}
+
+@keyframes login-in {
+    from {
+        opacity: 0;
+        margin-top: -140px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: -150px;
+    }
+}
+
+#login-form {
+    width: 450px;
+    height: 260px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
     margin: -150px 0 0 -225px;
-    padding:50px 30px 0 30px;
-    border-radius:5px;
-    background-color:#fff;
+    padding: 50px 30px 0 30px;
+    border-radius: 5px;
+    background-color: #fff;
     -moz-transition: all 1s;
     -o-transition: all 1s;
     -webkit-transition: all 1s;
     transition: all 1s;
+    display: none;
 }
-@-moz-keyframes login-in{
-    from {
-        opacity:0;
-        margin-top:-140px;
+
+    #login-form.on {
+        -moz-animation: login-in 1s ease-in-out;
+        -o-animation: login-in 1s ease-in-out;
+        -webkit-animation: login-in 1s ease-in-out;
+        animation: login-in 1s ease-in-out;
+        display: block;
     }
-    to{
-        opacity:1;
-        margin-top:-150px;
+
+#login-close, #register-close {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 24px;
+    color: #444;
+    cursor: pointer;
+}
+
+    #login-close:hover, #register-close:hover {
+        color: #000;
+    }
+
+@keyframes register-in {
+    from {
+        opacity: 0;
+        margin-top: -130px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: -145px;
     }
 }
 
-@-webkit-keyframes login-in{
+@-webkit-keyframes register-in {
     from {
-        opacity:0;
-        margin-top:-140px;
+        opacity: 0;
+        margin-top: -130px;
     }
-    to{
-        opacity:1;
-        margin-top:-150px;
+
+    to {
+        opacity: 1;
+        margin-top: -145px;
     }
 }
 
-@keyframes login-in{
+@-moz-keyframes register-in {
     from {
-        opacity:0;
-        margin-top:-140px;
+        opacity: 0;
+        margin-top: -130px;
     }
-    to{
-        opacity:1;
-        margin-top:-150px;
+
+    to {
+        opacity: 1;
+        margin-top: -145px;
     }
 }
-.box-bg.on .login-form {
-    -moz-animation: login-in 1s ease-in-out;
-    -o-animation: login-in 1s ease-in-out;
-    -webkit-animation: login-in 1s ease-in-out;
-    animation: login-in 1s ease-in-out;
+
+@-o-keyframes register-in {
+    from {
+        opacity: 0;
+        margin-top: -130px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: -145px;
+    }
 }
-#login-close{
-    display:block;
-    position:absolute;
-    right:0;top:0;
-    width:50px;height:50px;
-    line-height:50px;text-align:center;
-    font-size:24px;
-    color:#444;
-    cursor:pointer;
+
+#register-form {
+    display: none;
+    width: 700px;
+    height: 270px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -145px 0 0 -350px;
+    padding: 50px 30px 0 30px;
+    border-radius: 5px;
+    background-color: #fff;
 }
-#login-close:hover{
-    color:#000;
-}
+
+    #register-form.on {
+        display: block;
+        -moz-animation: register-in 1s;
+        -o-animation: register-in 1s;
+        -webkit-animation: register-in 1s;
+        animation: register-in 1s;
+    }

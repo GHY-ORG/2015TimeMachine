@@ -8,9 +8,11 @@ using BADL;
 using Entity;
 using Common;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace _2015TimeMachineCookie.Controllers
 {
+    [RoutePrefix("/Picture")]
     public class PictureController : Controller
     {
         // GET: Picture
@@ -20,21 +22,13 @@ namespace _2015TimeMachineCookie.Controllers
             return View(dt);
         }
 
-        // Post: BlockNo
-        [HttpPost]
-        [Route("/picture/block/{blockno}")]
-        public ActionResult block(int blockno)
-        {
-            DataTable dt = BADL_showImg.showImg(1, blockno);
-            return View(dt);
-        }
 
         [HttpPost]
         public ActionResult Create(HttpPostedFileBase upImg)
         {
             if (Session["User"] == null) return Redirect("/Home/Index");
             var result = new List<int>();
-            
+
             Parallel.For(0, Request.Files.Count, x =>
             {
                 var savepath = string.Concat(Server.MapPath("~/UploadFiles/"), "", "");

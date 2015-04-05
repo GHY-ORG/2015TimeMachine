@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Entity;
 using Common;
 using BADL;
+using _2015TimeMachineCookie.Models;
 
 namespace _2015TimeMachineCookie.Controllers
 {
@@ -27,12 +28,20 @@ namespace _2015TimeMachineCookie.Controllers
             if (user != null)
             {
                 Session["User"] = user;
-                return Json(new { username=user.UName });//200
+                return Json(new { username = user.UName });//200
             }
             else
             {
                 return new HttpUnauthorizedResult("login err.");//401
             }
+        }
+        [HttpPost]
+        public void Register(RegisterForm data)
+        {
+            ValidateModel(data);
+            System.Diagnostics.Debug.WriteLine(data);
+            Response.StatusCode = 200;
+            Response.Write(JsonConvert.SerializeObject(new { username = data.UserName }));
         }
         /// <summary>
         /// 用户安全退出，返回Index

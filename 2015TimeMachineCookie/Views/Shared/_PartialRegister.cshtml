@@ -1,1 +1,48 @@
-﻿
+﻿@model _2015TimeMachineCookie.Models.RegisterForm
+
+<form id="register-form" class="form-horizontal" role="form" onsubmit="return false">
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label for="" class="control-label col-md-4">学号</label>
+            <div class="col-md-8">
+                <input id="register-sno" class="form-control" type="text" placeholder="学号" pattern="[0-9]+" title="请输入您的学号" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label col-md-4">上网密码</label>
+            <div class="col-md-8">
+                <input id="register-spwd" class="form-control" type="password" placeholder="上网密码" title="必填" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label col-md-4">手机号</label>
+            <div class="col-md-8">
+                <input id="register-tel" class="form-control" type="tel" placeholder="手机号" pattern="[0-9]+" title="方便我们联系您哦" required />
+            </div>
+        </div>
+        <button id="register-btn-ok" class="btn btn-block btn-success">注册</button>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="" class="control-label col-md-4">用户名</label>
+            <div class="col-md-8">
+                <input id="register-uname" class="form-control" type="text" placeholder="用户名" title="请输入合规用户名" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label col-md-4">密码</label>
+            <div class="col-md-8">
+                <input id="register-pwd" class="form-control" type="password" placeholder="密码" title="请输入合规密码" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label col-md-4">确认密码</label>
+            <div class="col-md-8">
+                <input id="register-rpwd" class="form-control" type="password" placeholder="确认密码" title="必填" required />
+            </div>
+        </div>
+        <a id="register-btn-login" class="btn btn-info btn-block">返回登录</a>
+    </div>
+    <div id="register-close" class="glyphicon glyphicon-remove register-close" aria-hidden="true"></div>
+</form>

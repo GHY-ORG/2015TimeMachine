@@ -7,7 +7,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/main.min.css" rel="stylesheet" />
 
-    @foreach (var i in ViewBag.Css??new string[]{})
+    @foreach (var i in ViewBag.Css ?? new string[] { })
     {
         <link href="@i" rel="stylesheet" />
     }
@@ -43,7 +43,7 @@
                         欢迎，
                         @if (ViewBag.User == null)
                         {
-                            <a class="login-btn">请登陆</a>
+                            <a class="login-btn">请登录</a>
                         }
                         else
                         {
@@ -62,10 +62,13 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - GHY.CN</p>
     </footer>
+
     @if (ViewBag.User == null)
     {
-        @Html.Partial("_PartialLogin")
-        @Html.Partial("_PartialRegister");
+        <div class="box-bg">
+            @Html.Partial("_PartialLogin")
+            @Html.Partial("_PartialRegister")
+        </div>
     }
     <script src="~/Scripts/main.min.js"></script>
     <script>
@@ -74,7 +77,7 @@
 
     @if (ViewBag.User == null)
     {
-        <script>importLayout.showbg();</script>
+        <script>importLayout.showlogin();</script>
     }
 
     @foreach (var i in ViewBag.Js ?? new string[] { })
