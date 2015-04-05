@@ -4,15 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/main.min.css" rel="stylesheet" />
-
-    @foreach (var i in ViewBag.Css ?? new string[] { })
+    @foreach (var i in ViewBag.Css??new string[]{})
     {
         <link href="@i" rel="stylesheet" />
     }
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <meta name="description" content="TimeMachine" />
 </head>
 <body>
@@ -43,7 +40,7 @@
                         欢迎，
                         @if (ViewBag.User == null)
                         {
-                            <a class="login-btn">请登录</a>
+                            <a class="login-btn">请登陆</a>
                         }
                         else
                         {
@@ -62,30 +59,23 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - GHY.CN</p>
     </footer>
-
     @if (ViewBag.User == null)
     {
-        <div class="box-bg">
-            @Html.Partial("_PartialLogin")
-            @Html.Partial("_PartialRegister")
-        </div>
+        @Html.Partial("_PartialLogin")
+        @Html.Partial("_PartialRegister");
     }
     <script src="~/Scripts/main.min.js"></script>
     <script>
         var importLayout = new MyModules.Layout();
     </script>
-
     @if (ViewBag.User == null)
     {
-        <script>importLayout.showlogin();</script>
+        <script>importLayout.showbg();</script>
     }
-
+    
     @foreach (var i in ViewBag.Js ?? new string[] { })
     {
         <script src="@i"></script>
     }
 </body>
-
-
-
 </html>

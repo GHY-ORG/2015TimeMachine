@@ -20,6 +20,8 @@ namespace BADL
         //查询昵称和票数，返回imgTable
         public static DataTable reImgTable(DataTable imgTable)
         {
+            imgTable.Columns.Add("uName", typeof(string));
+            imgTable.Columns.Add("votes", typeof(Int32));
             string sql;
             foreach (DataRow dr in imgTable.Rows)
             {
@@ -44,44 +46,46 @@ namespace BADL
             string sql;
             if (blockno == 1)
             {
-                sql = @"select top 20 * from [img] where type = ? and sortOrder = 1 and state = 0";
+                sql = @"select top 15 * from [img] where type = ? and sortOrder = 1 and state = 0";
             }
             else
             {
-                sql = @"select top 20 * from [img] where type=? and sortOrder=1 and state=0 and [imgID] not in select top " + 20 * (blockno - 1) + " [imgID] from [img] where type=" + type + " and sortOrder=1 and state=0";
+                sql = @"select top 15 * from [img] where type=? and sortOrder=1 and state=0 and [imgID] not in (select top " + 15 * (blockno - 1) + " [imgID] from [img] where type=" + type + " and sortOrder=1 and state=0)";
             }
             var param = new OleDbParameter("@type", type);
             DataTable imgTable = helper.ExcuteDataTable(constr_TM, CommandType.Text, sql, param);
-            imgTable.Columns.Add("uName", typeof(string));
-            imgTable.Columns.Add("votes", typeof(Int32));
 
             return reImgTable(imgTable);
         }
 
         //显示符合搜索条件的图片，参数：搜索条件（学号，作者昵称）,类别号
-        public static DataTable showImg_search(string information, int type)
+        public static DataTable showImg_search(string information)
         {
-            string sql = @"select uID,uName from [user] where concat(uNum,uName) like '%?%'";
-            var param1 = new OleDbParameter("@info", information);
+            string sql = @"select [uID] from [user] where concat(uNum,uName) like '%"+information+"%' and state=0";
+            var param1 = new OleDbParameter();
             DataTable imgTable_uID = helper.ExcuteDataTable(constr_U, CommandType.Text, sql, param1);
 
-            sql = @"select * from [img] where uID=? and sortOrder=1 and type=? and state=0";
-            var param2 = new OleDbParameter[] { 
-                new OleDbParameter ("@uid",new Guid(imgTable_uID.Rows[0][0].ToString())),
-                new OleDbParameter("@type",type)
-            };
+            sql = @"select * from [img] where uID=? and sortOrder=1 and state=0";
+            var param2 = new OleDbParameter ("@uid",imgTable_uID.Rows[0][0].ToString());
             DataTable imgTable = helper.ExcuteDataTable(constr_TM, CommandType.Text, sql, param2);
 
             return reImgTable(imgTable);
         }
 
         //显示按照时间顺序的图片，参数：序列方式（0：升序 1：倒序）、类别号
-        public static DataTable showImg_time(int order, int type)
+        public static DataTable showImg_time(int order, int type, int blockno)
         {
-            string sql = "select * from [img] where type=? and sortOrder=1 order by upTime" + (order == 0 ? "" : " desc");
+            string sql;
+            if (blockno == 1)
+            {
+                sql = @"select top 15 * from [img] where type = ? and sortOrder = 1 and state = 0 order by upTime" + (order == 0 ? "" : " desc");
+            }
+            else
+            {
+                sql = @"select top 15 * from [img] where type=? and sortOrder=1 and state=0 and [imgID] not in (select top " + 15 * (blockno - 1) + " [imgID] from [img] where type=" + type + " and sortOrder=1 and state=0) order by upTime" + (order == 0 ? "" : " desc");
+            }
             var param = new OleDbParameter("@type", type);
             DataTable imgTable = helper.ExcuteDataTable(constr_TM, CommandType.Text, sql, param);
-
             return reImgTable(imgTable);
         }
 
