@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Entity.En_User user = Session["User"] as Entity.En_User;
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -34,17 +39,20 @@
                     <li>
                         @Html.ActionLink("美拍", "Index")
                     </li>
+                    <li>
+                        <a href="/UpLoad/">上传</a>
+                    </li>
                 </ul>
                 <div class="navbar-right">
                     <div class="user-state">
                         欢迎，
-                        @if (ViewBag.User == null)
+                        @if (user == null)
                         {
                             <a class="login-btn">请登陆</a>
                         }
                         else
                         {
-                            @ViewBag.User
+                            @user.UName
                             <a class="user-exit"></a>
                         }
                     </div>
@@ -59,14 +67,16 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - GHY.CN</p>
     </footer>
-    <div class="box-bg">
-        @if (ViewBag.User == null)
-        {
-            @Html.Partial("_PartialLogin")
-            @Html.Partial("_PartialRegister");
-        }
-    </div>
     
+        @if (user == null)
+        {
+            <div class="box-bg">
+                @Html.Partial("_PartialLogin")
+                @Html.Partial("_PartialRegister");
+                }
+            </div>
+        }
+
     <script src="~/Scripts/main.min.js"></script>
     <script>
         var importLayout = new MyModules.Layout();

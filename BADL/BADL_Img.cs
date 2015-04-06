@@ -22,6 +22,53 @@ namespace BADL
         private static SqlHelper helper = new SqlHelper();
         static string constr = System.Configuration.ConfigurationManager.ConnectionStrings["conTimeMachine"].ConnectionString;
 
+        public static bool isUploadBefore(Guid uid, int type)//判断是否上传过照片 sign-off cookie
+        {
+            string sql = @"update [img] set uID=? where uID=? and type = ? and [state]=0";
+            var param = new OleDbParameter[] { 
+                new OleDbParameter("@uID1",uid),
+                new OleDbParameter("@uID2",uid),
+                new OleDbParameter("@type",type),
+            };
+            int count = helper.ExecuteNonQuery(constr, CommandType.Text, sql, param);
+            if (count >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool AddImg(En_Img img)//上传- sign-off cookie
+        {
+            string sql = @"insert into img(
+                [imgID],[uID],[imgName],[imgTime],
+                [imgLocation],[imgPath],[type],[sortOrder],
+                [title],[description],[uptime],[views],[state]) 
+                values(newid(),?,?,?,?,?,?,?,?,?,SYSDATETIME(),0,0)";
+            var param = new OleDbParameter[] {
+                new OleDbParameter("@uid",img.UID),
+                new OleDbParameter("@imgname",img.ImgName),
+                new OleDbParameter("@imgtime",img.ImgTime),
+                new OleDbParameter("@imgaddress",img.ImgLocation),
+                new OleDbParameter("@imgpath",img.ImgPath),
+                new OleDbParameter("@type",img.Type),
+                new OleDbParameter("@order",img.SortOrder),
+                new OleDbParameter("@title",img.Title),
+                new OleDbParameter("@description",img.Description)
+            };
+            return helper.ExecuteNonQuery(constr, CommandType.Text, sql, param) > 0 ? true : false;
+        }
+        public static string GetPicPath(string picid)//通过id获取path sign-off cookie
+        {
+            string sql = "select imgPath from img where imgID=?";
+            var param = new OleDbParameter[] {
+                new OleDbParameter("@imgid",picid)
+            };
+            var result = helper.ExecuteScalar(constr, CommandType.Text, sql, param) ?? "";
+            return result.ToString();
+        }
         public static bool isUpImg(Guid uid)//判断用户是否上传过照片
         {
             string sql = @"update [img] set uID=? where uID=? and type = 1";
@@ -59,6 +106,7 @@ namespace BADL
                 return false;
             }
         }
+
         public static bool InsertImg(En_Img img)//上传照片
         {
             string sql = @"INSERT INTO [TimeMachine].[dbo].[img]([imgID],[uID],

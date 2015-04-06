@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "上传-九时一刻";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Css = new string[]{
+        "/Content/upload.css"
+    };
+    ViewBag.Js = new string[] { 
+        "/Scripts/timemachine.upload.js"
+    };
+}
+<div class="show-box">
+    <h2 class="box-title">我的照片</h2>
+    <button id="btn-pic-add" type="button" class="btn btn-success">添加</button>
+    <button id="btn-pic-info" type="button" class="btn btn-info">照片信息</button>
+    <hr />
+    <div class="pic-box">
+
+    </div>
+    <h2 class="box-title">我的图片故事</h2>
+    <button id="btn-story-add" type="button" class="btn btn-success">添加</button>
+    <button id="btn-story-info" type="button" class="btn btn-info">图片故事信息</button>
+    <hr />
+    <div class="story-box">
+
+    </div>
+</div>
+<form id="upload-pic-form" class="form-horizontal" action="/Upload/AddImage" method="post" role="form" enctype="multipart/form-data">
+    <input id="form-type" name="Type" class="sr-only" type="text" />
+    <input id="form-order" name="Order" class="sr-only" type="text" />
+    <div class="form-group">
+        <label class="control-label col-md-3">标题</label>
+        <div class="col-md-9">
+            <input title="必填" name="Title" class="pic-title form-control" type="text" placeholder="图片标题" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">拍摄时间</label>
+        <div class="col-md-9">
+            <input title="必填" name="Time" class="pic-time form-control my-datepicker" type="text" placeholder="拍摄时间" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">拍摄地点</label>
+        <div class="col-md-9">
+            <input title="必填" name="Address" class="pic-address form-control" type="text" placeholder="拍摄地点" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">添加描述</label>
+        <div class="col-md-9">
+            <textarea title="必填" name="Description" class="pic-description form-control" type="text" placeholder="不少于10个字~" rows="3" required></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">文件上传</label>
+        <div class="col-md-9">
+            <input title="必填" name="file" class="pic-file form-control" type="file" accept="image/jpg, image/jpeg, image/png" required />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-block btn-success">添加</button>
+    <a id="upload-pic-form-close" class="btn btn-block btn-danger">取消</a>
+</form>

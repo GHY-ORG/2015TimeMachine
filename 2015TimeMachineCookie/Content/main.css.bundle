@@ -13,6 +13,7 @@
   <!--The order of the <file> elements determines the order of the files in the bundle.-->
   <files>
     <file>/Content/bootstrap.min.css</file>
+    <file>/Content/bootstrap-datepicker3.min.css</file>
     <file>/Content/Site.css</file>
     <file>/Content/login.css</file>
   </files>

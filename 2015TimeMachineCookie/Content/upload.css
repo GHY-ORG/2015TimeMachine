@@ -1,0 +1,28 @@
+﻿body {
+    padding-top: 70px;
+}
+
+.show-box {
+    background: #fff;
+    padding: 30px;
+    margin: 0 auto;
+    width: 960px;
+    min-height: 300px;
+    border-radius: 5px;
+}
+.box-title{
+    display:inline;
+    vertical-align:bottom;
+}
+#upload-pic-form {
+    position:fixed;
+    z-index:1000;
+    top:45%;left:30%;
+    background: #fff;
+    margin: -200px auto 0 auto;
+    padding: 30px 20px 30px 20px;
+    width: 600px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #808080;
+    display:none;
+}

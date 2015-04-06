@@ -19,7 +19,6 @@ namespace _2015TimeMachineCookie.Controllers
         /// <param name="password">密码</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("/User/Login")]
         public ActionResult Login(string username, string password)
         {
             password = (password != null ? Md5.MD5_encrypt(password) : "");
@@ -34,6 +33,12 @@ namespace _2015TimeMachineCookie.Controllers
                 return new HttpUnauthorizedResult("login err.");//401
             }
         }
+        /// <summary>
+        /// 用户登录返回json{message:"info"}
+        /// 版本:release 1.0
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult Register(RegisterForm data)
         {
@@ -87,7 +92,6 @@ namespace _2015TimeMachineCookie.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("/User/Exit")]
         public ActionResult Exit()
         {
             if (Session["User"] != null)

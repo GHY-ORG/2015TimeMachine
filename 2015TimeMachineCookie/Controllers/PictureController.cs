@@ -36,29 +36,6 @@ namespace _2015TimeMachineCookie.Controllers
             DataTable dt = BADL_showImg.showImg_search(input);
             return View(dt);
         }
-
-        [HttpPost]
-        public ActionResult Create(HttpPostedFileBase upImg)
-        {
-            if (Session["User"] == null) return Redirect("/Home/Index");
-            var result = new List<int>();
-            
-            Parallel.For(0, Request.Files.Count, x =>
-            {
-                var savepath = string.Concat(Server.MapPath("~/UploadFiles/"), "", "");
-                try
-                {
-                    Request.Files[x].SaveAs(savepath);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                En_Img img = new En_Img();
-            });
-
-            return null;
-        }
+        
     }
 }

@@ -114,12 +114,11 @@
             url: "/User/Register",
             data: JSON.stringify(sendData),
             success: function (data) {
-                console.log("success:"+data.message);
-                document.location = document.location;
+                alert(data.message);
+                window.location.reload();
             },
             error: function (err) {
-                console.log("err:" + err.message);
-                alert(err.message);
+                alert(err.responseJSON.message);
                 $temp.removeAttr("disabled");
             }
         });
