@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using Entity;
 using Common;
 using BADL;
@@ -36,12 +35,52 @@ namespace _2015TimeMachineCookie.Controllers
             }
         }
         [HttpPost]
-        public void Register(RegisterForm data)
+        public JsonResult Register(RegisterForm data)
         {
-            ValidateModel(data);
-            System.Diagnostics.Debug.WriteLine(data);
-            Response.StatusCode = 200;
-            Response.Write(JsonConvert.SerializeObject(new { username = data.UserName }));
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = 400;
+                return Json(new { message = "表单中有非法有非法值！" });
+            }
+            //学号验证
+            if (Common.CheckNum.CheckUserNum(data.StudentNo, data.SPassword))
+            {
+
+                En_User user = new En_User();
+                user.UNum = data.StudentNo;
+                user.UTel = data.Phone;
+                user.UName = data.UserName;
+                user.UPwd = Md5.MD5_encrypt(data.Password1);
+                if (BADL_User.IsStunumExsit(user.UNum))
+                {
+                    Response.StatusCode = 400;
+                    return Json(new { message = "该学号已经注册过用户！" });
+                }
+                if (BADL_User.IsNameExsit(user.UNum))
+                {
+                    Response.StatusCode = 400;
+                    return Json(new { message = "用户名已经存在" });
+                }
+
+                if (BADL_User.RegisterUser(user))
+                {
+                    user = BADL_User.Login(user.UName, user.UPwd);
+                    Session["User"] = user;
+                    Response.StatusCode = 200;
+                    return Json(new { message = "注册成功" });
+                }
+                else
+                {
+                    Response.StatusCode = 500;
+                    return Json(new { message = "服务器问题，请联系管理员" });
+                }
+
+            }
+            else
+            {
+                Response.StatusCode = 401;
+                return Json(new { message = "学号验证失败" });
+            }
         }
         /// <summary>
         /// 用户安全退出，返回Index

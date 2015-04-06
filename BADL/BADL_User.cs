@@ -19,7 +19,25 @@ namespace BADL
     {
         private static SqlHelper helper = new SqlHelper();
         static string constr = System.Configuration.ConfigurationManager.ConnectionStrings["conGhyusers"].ConnectionString;
-        public static bool InsertUser(En_User user)//注册
+        /// <summary>
+        /// 用户注册，user中要包含学号，手机，用户名，用户密码(md5)
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public static bool RegisterUser(En_User user)//注册
+        {
+            string sql = @"INSERT INTO [ghyusers].[dbo].[user]([uID], [uNum], [uTel], [uName],
+                [uPwd], [uMail], [registerTime], [lastLogin], [state])
+                VALUES (newid(), ?, ?, ?, ?, '', SYSDATETIME(), SYSDATETIME(), 1)";
+            var param = new OleDbParameter[]{
+                new OleDbParameter("@num",user.UNum),
+                new OleDbParameter("@tel",user.UTel),
+                new OleDbParameter("@name",user.UName),
+                new OleDbParameter("@pwd",user.UPwd)
+            };
+            return helper.ExecuteNonQuery(constr, CommandType.Text, sql, param) > 0 ? true : false;
+        }
+        public static bool InsertUser(En_User user)
         {
             string sql = @"INSERT INTO [ghyusers].[dbo].[user]([uID],[uNum],[uName],
                 [uPwd],[uMail],[uIP],[registerTime],[lastLogin],[state])

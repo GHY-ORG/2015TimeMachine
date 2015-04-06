@@ -78,10 +78,13 @@
             }
         });
     });
-    document.getElementById("register-rpwd").checkValidity = function () {
-        if (this.value === document.getElementById("register-pwd").value) return true;
-        else false;
+    if (document.getElementById("register-rpwd")) {
+        document.getElementById("register-rpwd").checkValidity = function () {
+            if (this.value === document.getElementById("register-pwd").value) return true;
+            else false;
+        }
     }
+
     $bg.find("input").blur(function () {
         var dom = $(this).get(0);
         if (!dom.checkValidity()) {
@@ -110,12 +113,13 @@
         $.ajaxJsonPost({
             url: "/User/Register",
             data: JSON.stringify(sendData),
-            success: function (user) {
-                $registerform.removeClass("on"); $bg.removeClass("on");
-                $(".user-state").html("欢迎， " + user.username + " <a class='user-exit'></a>");
+            success: function (data) {
+                console.log("success:"+data.message);
+                document.location = document.location;
             },
             error: function (err) {
-                console.log(err);
+                console.log("err:" + err.message);
+                alert(err.message);
                 $temp.removeAttr("disabled");
             }
         });

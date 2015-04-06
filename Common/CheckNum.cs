@@ -14,23 +14,15 @@ namespace Common
     {
         public static bool CheckUserNum(string userNum, string password)
         {
-            string Url = @"http://v.ghy.swufe.edu.cn/Service.asmx/chkUser?userNum=" + userNum + "&password=" + password;//验证该用户，存在就是2，不存在就是1
-
+            string Url = @"http://v.ghy.swufe.edu.cn/Service.asmx/chkUser?userNum=" + userNum + "&password=" + password;
             WebClient wc = new WebClient();
-
-            wc.Credentials = CredentialCache.DefaultCredentials;//此处不懂，此处不懂，语句不懂
-
+            wc.Credentials = CredentialCache.DefaultCredentials;
             byte[] dataBuffer = wc.DownloadData(Url);
-
             string strWebData = Encoding.Default.GetString(dataBuffer);
-
             XmlDocument doc = new XmlDocument();
-
-            doc.LoadXml(strWebData);//获取webservice返回的xmlstring，读到doc中
-
+            doc.LoadXml(strWebData);
             string a = doc.GetElementsByTagName("int")[0].InnerText;
-
-            if (a.Equals("2"))//验证节点内容，确定返回值
+            if (a.Equals("2"))
             {
                 return true;
             }
